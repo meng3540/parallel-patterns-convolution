@@ -5,10 +5,7 @@
 #define N 5 // Size of input array
 #define M 3  // Size of convolution kernel
 #define BLOCK_SIZE 16
-
-// Kernel function using shared memory (tiling)
-#define TILE_SIZE 16
-
+#define TILE_SIZE 16    // Kernel function using shared memory (tiling)
 
 __global__
 void convolution2DKernelshared(const float* input, const float* kernel, float* output,
@@ -20,16 +17,13 @@ void convolution2DKernelshared(const float* input, const float* kernel, float* o
     int localRow = threadIdx.y;
     int localCol = threadIdx.x;
 
-
     // Indexing for shared memory
     int sharedRow = localRow + 1;
     int sharedCol = localCol + 1;
 
-
     // Load data into shared memory
     if (row < inputHeight && col < inputWidth) {
         inputTile[sharedRow][sharedCol] = input[row * inputWidth + col];
-
 
         // Load halo elements
         if (localRow == 0) {
@@ -39,14 +33,12 @@ void convolution2DKernelshared(const float* input, const float* kernel, float* o
                 inputTile[sharedRow - 1][sharedCol] = 0.0f;
         }
 
-
         if (localRow == blockDim.y - 1) {
             if (row < inputHeight - 1)
                 inputTile[sharedRow + 1][sharedCol] = input[(row + 1) * inputWidth + col];
             else
                 inputTile[sharedRow + 1][sharedCol] = 0.0f;
         }
-
 
         if (localCol == 0) {
             if (col > 0)
@@ -55,7 +47,6 @@ void convolution2DKernelshared(const float* input, const float* kernel, float* o
                 inputTile[sharedRow][sharedCol - 1] = 0.0f;
         }
 
-
         if (localCol == blockDim.x - 1) {
             if (col < inputWidth - 1)
                 inputTile[sharedRow][sharedCol + 1] = input[row * inputWidth + col + 1];
@@ -63,12 +54,9 @@ void convolution2DKernelshared(const float* input, const float* kernel, float* o
                 inputTile[sharedRow][sharedCol + 1] = 0.0f;
         }
 
-
         __syncthreads();
 
-
         float result = 0.0f;
-
 
         for (int i = 0; i < kernelHeight; ++i) {
             for (int j = 0; j < kernelWidth; ++j) {
@@ -76,11 +64,9 @@ void convolution2DKernelshared(const float* input, const float* kernel, float* o
             }
         }
 
-
         output[row * inputWidth + col] = result;
     }
 }
-
 
 // kernel function
 __global__
