@@ -19,7 +19,7 @@ When employing padding same, the padding is applied in such a way that the outpu
 ### Padding same
 ![Padding same gif](res/padding_same.gif)
 
-## Definition
+### Definition
 
 **Parallel convolution** is a technique used in parallel programming to compute convolution operations concurrently across multiple processing units, such as CPU cores or GPUs. By distributing the computation workload, parallel convolution aims to exploit parallelism and accelerate the processing of large datasets, enhancing overall performance.
 
