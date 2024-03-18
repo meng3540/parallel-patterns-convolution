@@ -16,7 +16,7 @@ In essence, parallel convolution involves dividing the input data and distributi
 
 When employing padding same, the padding is applied in such a way that the output size matches the input size. This ensures that the convolution operation does not reduce the dimensions of the input data.
 
-### Padding same
+** Padding same **
 ![Padding same gif](res/padding_same.gif)
 
 ### Definition
