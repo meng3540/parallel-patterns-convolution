@@ -172,3 +172,6 @@ For global memory the memory throughput for the 2D convolution was 200 mb/s comp
 
 ## Visual Studio Project
 The Visual Studio project for this CUDA convolution implementation can be found [here](convolution2d/convolution2d.sln). The CUDA C code is located in the [kernel.cu](convolution2d/convolution2d/kernel.cu).
+
+## License
+The source code for the site is licensed under the MIT license, which you can find in the [MIT-LICENSE.txt](MIT-License.txt) file.
