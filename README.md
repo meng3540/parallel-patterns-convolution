@@ -14,11 +14,17 @@ To parallelize this operation, you can distribute the computation across multipl
 
 In essence, parallel convolution involves dividing the input data and distributing the workload across multiple processing units to exploit parallelism and improve performance.
 
+When employing padding same, the padding is applied in such a way that the output size matches the input size. This ensures that the convolution operation does not reduce the dimensions of the input data.
+
+### Padding same
+![Padding same gif](res/padding_same.gif)
+
 ## Definition
 
 **Parallel convolution** is a technique used in parallel programming to compute convolution operations concurrently across multiple processing units, such as CPU cores or GPUs. By distributing the computation workload, parallel convolution aims to exploit parallelism and accelerate the processing of large datasets, enhancing overall performance.
 
 ## Basic Algorithm (Padding Same)
+ 
 The function iterates over each element of the output array, computing the convolution result for each element based on the input data and the kernel.
 
 Boundary conditions are checked to ensure that the convolution operation stays within the bounds of the input data.
@@ -54,4 +60,4 @@ __global__ void convolution2DKernel(const float* input, const float* kernel, flo
 }
 ```
 ## Visual Studio Project
-The Visual Studio project for this CUDA convolution implementation can be found [here](https://github.com/meng3540/parallel-patterns-convolution/blob/main/convolution2d/convolution2d.sln). The CUDA C code is located in the [kernel.cu](https://github.com/meng3540/parallel-patterns-convolution/blob/main/convolution2d/convolution2d/kernel.cu).
+The Visual Studio project for this CUDA convolution implementation can be found [here](convolution2d/convolution2d.sln). The CUDA C code is located in the [kernel.cu](convolution2d/convolution2d/kernel.cu).
