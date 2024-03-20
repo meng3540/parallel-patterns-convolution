@@ -151,6 +151,29 @@ void convolution2DKernelshared(const float* input, const float* kernel, float* o
 ![](res/sharedmemouput.png)
 
 ### MATLAB (Using MATLAB to verify the output, and my [MATLAB file](https://drive.matlab.com/sharing/d5eddc2a-8fc0-43bc-b82c-ad9cc0f90b60).)
+
+**MATLAB Code:**
+
+```matlab
+% Input matrix
+input = [3 3 2 1 0;
+         0 0 1 3 1;
+         3 1 2 2 3;
+         2 0 0 2 2;
+         2 0 0 0 1];
+
+% Kernel
+kernel = [0 1 2;
+          2 2 0;
+          0 1 2];
+
+% Perform 2D convolution
+result = conv2(input, rot90(kernel,2),"same");
+
+disp('Result of 2D convolution:');
+disp(result);
+```
+
 ![](res/matlab_conv2.png)
 
 ## Optimization Analysis
